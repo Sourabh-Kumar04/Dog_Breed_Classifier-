@@ -580,4 +580,4 @@ Real: beagle,   Classifier: walker hound, walker foxhound
 Real: golden retriever,   Classifier: leonberg
 Real: great pyrenees,   Classifier: kuvasz
 
-** Total Elapsed Runtime: 0:0:6
+** Total Elapsed Runtime: 0:0:5
