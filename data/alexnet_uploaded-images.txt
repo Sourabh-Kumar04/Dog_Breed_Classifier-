@@ -101,4 +101,4 @@ INCORRECT Dog Breed Assignment:
 Real: dog,   Classifier: golden retriever
 Real: dog,   Classifier: golden retriever
 
-** Total Elapsed Runtime: 0:0:1
+** Total Elapsed Runtime: 0:0:0
