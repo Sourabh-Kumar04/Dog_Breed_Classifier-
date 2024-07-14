@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND/intropylab-classifying-images/test_classifier.py
 #                                                                             
-# PROGRAMMER: Jennifer S.                                                    
-# DATE CREATED: 01/30/2018                                  
+# PROGRAMMER: Sourabh-Kumar04 (Sourabh Kumar)                                                    
+# DATE CREATED: 14 July, 2024                                 
 # REVISED DATE:             <=(Date Revised - if any)                         
 # PURPOSE: To demonstrate the proper usage of the classifier() function that 
 #          is defined in classifier.py This function uses CNN model 
