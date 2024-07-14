@@ -47,18 +47,41 @@ def get_pet_labels(image_dir):
     # where the key is the filename and the value is the picture label
     results_dic = dict()
 
-    # extracting only the words of the file that contain the pet image label
+    # Processes through each file in the directory, extracting only the words
+    # that contain the pet image label
     for idx in range(0, len(in_files), 1):
-      if in_files[idx][0] != ".":
-        pet_label = ""
-        pass
+       
+       # Skips file if starts with '.', i.e., it isn't a pet image file
+       if in_files[idx][0] != ".":
+              
+          # Uses split() to extract words of filename into list image_name
+          image_name = in_files[idx].split("_")
+              
+          # Creates temporary label variable to hold pet label name extracted 
+          pet_label = ""
 
-        if in_files[idx] not in results_dic:
-          results_dic[in_files[idx]] = [pet_label]
-        else:
-          print("** Warning:Duplicate files exists in directory: ", in_files[idx])
-        
+          # Loops to check if word in pet name is only alphabetic characters
+          # If true: appends word to pet_label separated by space 
+          for word in image_name:
+              if word.isalpha(): 
+                # Adds whitespace between two words
+                pet_label += word.lower() + " "
+          # Strips off ending whitespace character in newly-created label
+          pet_label = pet_label.rstrip()
 
+       # If filename doesn't already exist in dictionary: adds it and its pet label
+       # Else: prints an error message indicating duplicate files
+       if in_files[idx] not in results_dic:
+            results_dic[in_files[idx]] = [pet_label]
+   
+       else:
+            print("** Warning: Duplicate files exist in directory:",in_files[idx])
+                
+    #Iterates through a dictionary and prints all keys + their associated values
+    print("\nAll key-value pairs in dictionary results_dic are as follows:\n")
+    for key in results_dic:
+          print("Filename=", key, "   Pet Label=", results_dic[key][0])
+          
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    return results_dic

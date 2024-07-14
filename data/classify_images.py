@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/classify_images.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
+# PROGRAMMER: Sourabh-Kumar04 (Sourabh Kumar)
+# DATE CREATED: 14 July, 2024                             
 # REVISED DATE: 
 # PURPOSE: Create a function classify_images that uses the classifier function 
 #          to create the classifier labels and then compares the classifier 
@@ -65,4 +65,39 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+    # Process all files in the results_dic - use images_dir to give fullpath
+    # that indicates the folder and the filename (key) to be used in the 
+    # classifier function
+    for key in results_dic:
+       
+       # Runs classifier function to classify the images classifier function 
+       # Inputs: path + filename  and  model; Returns: model_label as classifier label
+       image_path  = images_dir + key
+       model_label = classifier(image_path, model)
+
+       # Processes the results so they can be compared with pet image labels
+       # set labels to lowercase (lower) and stripping off whitespace(strip)
+       model_label = model_label.lower().strip()
+              
+       # defines truth as pet image label 
+       truth = results_dic[key][0]
+
+       # Uses the extend list function to add the classifier label (model_label)
+       # and the value of 1 (match between pet image label and the classifier label)
+       # to the results_dic dictionary for the key indicated by the variable key 
+       #
+       # If exact match is found
+       if truth in model_label:
+            results_dic[key].extend([model_label,1])
+       # No match is found
+       else:
+            results_dic[key].extend([model_label,0])
+            
+    # Iterates through the list to print the results for each filename
+    for key in results_dic:
+        print("\nFile Name=", key, "\nPet Image Label=", results_dic[key][0],
+          "\nClassifier Label=", results_dic[key][1], "\nMatch=",
+          results_dic[key][2])
+    
+    # No return needed (dic is a mutable data structure)
+    return None
