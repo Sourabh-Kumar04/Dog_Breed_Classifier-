@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/classify_images.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
+# PROGRAMMER: Sourabh Kumar (Sourabh-Kumar04)
+# DATE CREATED: 16 July, 2024                                
 # REVISED DATE: 
 # PURPOSE: Create a function classify_images that uses the classifier function 
 #          to create the classifier labels and then compares the classifier 
@@ -22,6 +22,7 @@
 ##
 # Imports classifier function for using CNN to classify images 
 from classifier import classifier 
+import os
 
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function. 
@@ -65,4 +66,26 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+
+    for filename, pet_label in results_dic.items():
+        # Construct full image path
+        image_path = os.path.join(images_dir, filename)
+        
+        # Get classifier label
+        classifier_label = classifier(image_path, model).lower().strip()
+        
+        # Check for match
+        match = int(pet_label[0] in classifier_label)
+        
+        # Update results dictionary
+        pet_label.extend([classifier_label, match])
+
+    # Print results
+    print("\nClassification Results:")
+    for filename, (pet_label, classifier_label, match) in results_dic.items():
+        print(f"\nFile Name: {filename}")
+        print(f"Pet Image Label: {pet_label}")
+        print(f"Classifier Label: {classifier_label}")
+        print(f"Match: {match}")
+
+    return None
